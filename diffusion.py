@@ -12,4 +12,4 @@ with open('prompt.txt', 'r') as f:
     prompts = f.read().splitlines()   
     for prompt in prompts:
         image = pipe(prompt).images[0]  
-        image.save("img/" + prompt.replace(" ", "_") + "png")
+        image.save("img/" + prompt.replace(" ", "_") + ".png")
