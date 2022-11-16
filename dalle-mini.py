@@ -90,12 +90,12 @@ cond_scale = 10.0
 from flax.training.common_utils import shard_prng_key
 import numpy as np
 from PIL import Image
-from tqdm.notebook import trange
+from tqdm import tqdm
 
 print(f"Prompts: {prompts}\n")
 # generate images
 images = []
-for i in trange(max(n_predictions // jax.device_count(), 1)):
+for i in tqdm(max(n_predictions // jax.device_count(), 1)):
     # get a new key
     key, subkey = jax.random.split(key)
     # generate images
