@@ -95,7 +95,7 @@ from tqdm import tqdm
 print(f"Prompts: {prompts}\n")
 # generate images
 images = []
-for i in tqdm(max(n_predictions // jax.device_count(), 1)):
+for i in tqdm(range(max(n_predictions // jax.device_count(), 1))):
     # get a new key
     key, subkey = jax.random.split(key)
     # generate images
