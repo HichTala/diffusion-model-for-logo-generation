@@ -1,19 +1,7 @@
 import torch
-from dalle2_pytorch import DALLE2, DiffusionPriorNetwork, DiffusionPrior, Unet, Decoder, CLIP
+from dalle2_pytorch import DALLE2, DiffusionPriorNetwork, DiffusionPrior, Unet, Decoder, OpenAIClipAdapter
 
-clip = CLIP(
-    dim_text=512,
-    dim_image=512,
-    dim_latent=512,
-    num_text_tokens=49408,
-    text_enc_depth=6,
-    text_seq_len=256,
-    text_heads=8,
-    visual_enc_depth=6,
-    visual_image_size=256,
-    visual_patch_size=32,
-    visual_heads=8
-).cuda()
+clip = OpenAIClipAdapter()
 
 # mock data
 
