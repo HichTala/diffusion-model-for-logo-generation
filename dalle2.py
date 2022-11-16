@@ -1,36 +1,14 @@
 import torch
-from dalle2_pytorch import DALLE2, DiffusionPriorNetwork, DiffusionPrior, Unet, Decoder, CLIP
+from dalle2_pytorch import DALLE2, DiffusionPriorNetwork, DiffusionPrior, Unet, Decoder, OpenAIClipAdapter
+from PIL import Image
+from torchvision.utils import save_image
 
-clip = CLIP(
-    dim_text=512,
-    dim_image=512,
-    dim_latent=512,
-    num_text_tokens=49408,
-    text_enc_depth=6,
-    text_seq_len=256,
-    text_heads=8,
-    visual_enc_depth=6,
-    visual_image_size=256,
-    visual_patch_size=32,
-    visual_heads=8
-).cuda()
+clip = OpenAIClipAdapter()
 
 # mock data
 
 text = torch.randint(0, 49408, (4, 256)).cuda()
 images = torch.randn(4, 3, 256, 256).cuda()
-
-# train
-
-loss = clip(
-    text,
-    images,
-    return_loss=True
-)
-
-loss.backward()
-
-# do above for many steps ...
 
 # prior networks (with transformer)
 
@@ -95,13 +73,15 @@ dalle2 = DALLE2(
     prior=diffusion_prior,
     decoder=decoder
 )
-prompt = 'cute puppy chasing after a squirrel'
+prompt = ['cute puppy chasing after a squirrel']
 images = dalle2(
-    [prompt],
+    prompt,
     # classifier free guidance strength (> 1 would strengthen the condition)
     cond_scale=2.
 )
 
 # save your image (in this example, of size 256x256)
-filename = prompt.replace(' ', '_') + '_dalle2.png'
-images.save('img/' + filename)
+for i, image in enumerate(images):
+    print(image.shape)
+    filename = prompt[i].replace(' ', '_') + '_dalle2.png'
+    save_image(image, 'img/' + filename)
