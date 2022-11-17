@@ -79,7 +79,7 @@ tokenized_prompts = processor(prompts)
 tokenized_prompt = replicate(tokenized_prompts)
 
 # number of predictions per prompt
-n_predictions = 8
+n_predictions = 1
 
 # We can customize generation parameters (see https://huggingface.co/blog/how-to-generate)
 gen_top_k = None
