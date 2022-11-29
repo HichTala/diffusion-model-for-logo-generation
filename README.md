@@ -9,7 +9,7 @@ Separate them with line wrap. The given `targets.txt` file is used to scrap the 
 To get your dataset, then run :
 
 ```bash
-    python3.10 scraper.py
+    python3.10 datagetter.py
 ```
 
-You will get a `dataset.csv` file containing image url and description.
+You will get a `dataset.csv` file containing image url and description plus a `dataset.tar` file containing logos and captions.
