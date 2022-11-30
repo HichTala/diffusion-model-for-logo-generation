@@ -2,13 +2,14 @@
     "decoder": {
         "unets": [
             {
-                "dim": 128,
+                "dim": 16,
                 "image_embed_dim": 768,
-                "cond_dim": 64,
+                "cond_dim": 16,
                 "channels": 3,
                 "dim_mults": [1, 2, 4, 8],
-                "attn_dim_head": 32,
-                "attn_heads": 16
+                "attn_dim_head": 16,
+                "attn_heads": 4,
+		        "self_attn": [false, true, true, true]
             }
         ],
         "clip": {
@@ -84,24 +85,15 @@
         "overwrite_data_path": true,
 
         "log": {
-            "log_type": "wandb",
-
-            "wandb_entity": "your_wandb",
-            "wandb_project": "your_project",
-
-            "verbose": true
+            "log_type": "console"
         },
 
         "load": {
             "load_from": "local",
-		"file_path": "path/to/pretrained/model"
-
+		    "url": "/home/groupe3/project/diffusion-model-for-logo-generation/dalle2-laion/models/second_decoder.pth"
         },
 
         "save": [{
-            "save_to": "wandb",
-            "save_latest_to": "latest.pth"
-        }, {
             "save_to": "local",
             "save_latest_to": "latest.pth"
         }]
