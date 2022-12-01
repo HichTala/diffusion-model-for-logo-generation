@@ -58,8 +58,9 @@ class DatasetGetter():
                 url = row[0]
                 caption = row[1]
                 img_data = requests.get(url).content
-                img = Image.open(io.BytesIO(img_data)).convert('RGBA')
+
                 try:
+                    img = Image.open(io.BytesIO(img_data)).convert('RGBA')
                     new_image = Image.new('RGBA', img.size, 'WHITE')
                     new_image.paste(img, mask=img)
 
@@ -67,12 +68,14 @@ class DatasetGetter():
 
                     with open('dataset/' + str(i)+'.txt', 'w', encoding='utf8') as captions:
                         captions.write(caption)
-                except UnicodeDecodeError:
+                    with open('clip_dataset.csv', 'a', encoding='utf8') as clip_dataset:
+                        clip_dataset.write('dataset/' + str(i) + '.jpg;' + caption + '\n')
+                except:
                     print('Image ' + str(i) + ' : encoding error, skipped')
         os.system('tar -cvzf dataset.tar -C dataset .')
         if delete_tmp_folder:
             os.system('rm -r dataset')
 
 imagedownloader = DatasetGetter('targets.txt')
-imagedownloader.scrap()
+# imagedownloader.scrap()
 imagedownloader.download()
