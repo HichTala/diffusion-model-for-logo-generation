@@ -2,13 +2,19 @@
     "decoder": {
         "unets": [
             {
-                "dim": 16,
-                "image_embed_dim": 768,
-                "cond_dim": 16,
+                "dim": 320,
+                "cond_dim": 512,
+                "image_embed_dim": 1024,
+                "text_embed_dim": 1024,
+                "cond_on_text_encodings": true,
                 "channels": 3,
-                "dim_mults": [1, 2, 4, 8],
-                "attn_dim_head": 16,
-                "attn_heads": 4,
+                "dim_mults": [1, 2, 3, 4],
+                "num_resnet_blocks": 4,
+                "attn_heads": 8,
+                "attn_dim_head": 64,
+                "sparse_attn": true,
+                "memory_efficient": true,
+                "resnet_weight_standardization": false,
 		        "self_attn": [false, true, true, true]
             }
         ],
@@ -26,12 +32,12 @@
     },
     "data": {
         "webdataset_base_url": "train_data/{}.tar",
-        "num_workers": 4,
-        "batch_size": 64,
+        "num_workers": 6,
+        "batch_size": 21,
         "start_shard": 0,
         "end_shard": 9999999,
-        "shard_width": 1,
-        "index_width": 1,
+        "shard_width": 6,
+        "index_width": 4,
         "splits": {
             "train": 0.75,
             "val": 0.15,
@@ -41,7 +47,7 @@
         "resample_train": false,
         "preprocessing": {
             "RandomResizedCrop": {
-                "size": [128, 128],
+                "size": [224, 224],
                 "scale": [0.75, 1.0],
                 "ratio": [1.0, 1.0]
             },
@@ -89,8 +95,8 @@
         },
 
         "load": {
-            "load_from": "local",
-		    "url": "/home/groupe3/project/diffusion-model-for-logo-generation/dalle2-laion/models/second_decoder.pth"
+            "load_from": "url",
+		    "url": "https://huggingface.co/nousr/dalle2-pytorch/resolve/main/decoder/latest.pth"
         },
 
         "save": [{
