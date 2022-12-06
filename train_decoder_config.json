@@ -1,12 +1,14 @@
 {
+    "seed": 1,
+    
     "decoder": {
         "unets": [
             {
-                "dim": 320,
+                "dim": 256,
                 "cond_dim": 512,
-                "image_embed_dim": 1024,
-                "text_embed_dim": 1024,
-                "cond_on_text_encodings": true,
+                "image_embed_dim": 768,
+                "text_embed_dim": 768,
+                "cond_on_text_encodings": false,
                 "channels": 3,
                 "dim_mults": [1, 2, 3, 4],
                 "num_resnet_blocks": 4,
@@ -14,40 +16,58 @@
                 "attn_dim_head": 64,
                 "sparse_attn": true,
                 "memory_efficient": true,
-                "resnet_weight_standardization": false,
-		        "self_attn": [false, true, true, true]
+                "self_attn": [false, true, true, true]
+            },
+              {
+                "dim": 256,
+                "cond_dim": 512,
+                "image_embed_dim": 768,
+                "text_embed_dim": 768,
+                "cond_on_text_encodings": true,
+                "init_cross_embed": false,
+                "channels": 3,
+                "dim_mults": [1, 2, 3, 4],
+                "num_resnet_blocks": 4,
+                "attn_heads": 8,
+                "attn_dim_head": 64,
+                "sparse_attn": false,
+                "memory_efficient": true,
+                "self_attn": [false, false, false, false]
             }
+
         ],
         "clip": {
             "make": "openai",
             "model": "ViT-L/14"
         },
-
-        "image_sizes": [64],
+        "image_sizes": [64, 256],
         "channels": 3,
         "timesteps": 1000,
         "loss_type": "l2",
-        "beta_schedule": ["cosine"],
-        "learned_variance": true
+        "beta_schedule": ["cosine", "cosine"],
+        "learned_variance": false,
+        "text_cond_drop_prob": 0.0,
+        "image_cond_drop_prob": 0.0
     },
     "data": {
-        "webdataset_base_url": "train_data/{}.tar",
+        "webdataset_base_url": "train_data/{}.tar -",
         "num_workers": 6,
-        "batch_size": 21,
+        "batch_size": 5,
         "start_shard": 0,
-        "end_shard": 9999999,
-        "shard_width": 6,
+        "end_shard": 17535,
+        "shard_width": 5,
         "index_width": 4,
+        "cond_scale": [3.5, 1.0],
         "splits": {
             "train": 0.75,
             "val": 0.15,
             "test": 0.1
         },
-        "shuffle_train": true,
-        "resample_train": false,
+        "shuffle_train": false,
+        "resample_train": true,
         "preprocessing": {
             "RandomResizedCrop": {
-                "size": [224, 224],
+                "size": [256, 256],
                 "scale": [0.75, 1.0],
                 "ratio": [1.0, 1.0]
             },
@@ -56,31 +76,26 @@
     },
     "train": {
         "epochs": 20,
-        "lr": 1e-4,
-        "wd": 0.01,
+        "lr": 1.2e-4,
+        "wd": 0.0,
         "max_grad_norm": 0.5,
-        "save_every_n_samples": 100000,
-        "n_sample_images": 6,
+        "save_every_n_samples": 400000,
+        "n_sample_images": 10,
+        "cond_scale": [3.5, 1.0],
         "device": "cuda:0",
-        "epoch_samples": null,
-        "validation_samples": null,
+        "epoch_samples": 1600000,
+        "validation_samples": 60000,
         "use_ema": true,
-        "ema_beta": 0.99,
-        "amp": false,
-        "unet_training_mask": [true]
+        "ema_beta": 0.9999,
+        "save_all": false,
+        "save_latest": true,
+        "save_best": true,
+        "unet_training_mask": [false, true]
     },
     "evaluate": {
-        "n_evaluation_samples": 1000,
+        "n_evaluation_samples": 10,
         "FID": {
             "feature": 64
-        },
-        "IS": {
-            "feature": 64,
-            "splits": 10
-        },
-        "KID": {
-            "feature": 64,
-            "subset_size": 10
         },
         "LPIPS": {
             "net_type": "vgg",
@@ -96,7 +111,7 @@
 
         "load": {
             "load_from": "url",
-		    "url": "https://huggingface.co/nousr/dalle2-pytorch/resolve/main/decoder/latest.pth"
+		    "url": "https://huggingface.co/Veldrovive/upsamplers/resolve/main/working/latest.pth"
         },
 
         "save": [{
