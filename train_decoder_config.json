@@ -1,11 +1,12 @@
 {
+    "seed": 0,
     "decoder": {
         "unets": [
             {
-                "dim": 320,
-                "cond_dim": 512,
-                "image_embed_dim": 1024,
-                "text_embed_dim": 1024,
+                "dim": 16,
+                "cond_dim": 16,
+                "image_embed_dim": 768,
+                "text_embed_dim": 768,
                 "cond_on_text_encodings": true,
                 "channels": 3,
                 "dim_mults": [1, 2, 3, 4],
@@ -19,10 +20,9 @@
             }
         ],
         "clip": {
-            "make": "openai",
-            "model": "ViT-L/14"
+            "make": "open_clip",
+            "model": "ViT-H-14"
         },
-
         "image_sizes": [64],
         "channels": 3,
         "timesteps": 1000,
@@ -35,7 +35,7 @@
         "num_workers": 6,
         "batch_size": 21,
         "start_shard": 0,
-        "end_shard": 9999999,
+        "end_shard": 231349,
         "shard_width": 6,
         "index_width": 4,
         "splits": {
@@ -43,8 +43,8 @@
             "val": 0.15,
             "test": 0.1
         },
-        "shuffle_train": true,
-        "resample_train": false,
+        "shuffle_train": false,
+        "resample_train": true,
         "preprocessing": {
             "RandomResizedCrop": {
                 "size": [224, 224],
@@ -55,32 +55,26 @@
         }
     },
     "train": {
-        "epochs": 20,
-        "lr": 1e-4,
-        "wd": 0.01,
+        "epochs": 1000,
+        "lr": 1.2e-4,
+        "wd": 0.0,  
         "max_grad_norm": 0.5,
-        "save_every_n_samples": 100000,
-        "n_sample_images": 6,
+        "save_every_n_samples": 5000000,
+        "find_unused_parameters": false,
+        "warmup_steps": 1000,
+        "amp": true,
+        "n_sample_images": 10,
         "device": "cuda:0",
-        "epoch_samples": null,
-        "validation_samples": null,
+        "epoch_samples": 10000000,
+        "validation_samples": 100000,
         "use_ema": true,
-        "ema_beta": 0.99,
-        "amp": false,
+        "ema_beta": 0.9999,
         "unet_training_mask": [true]
     },
     "evaluate": {
-        "n_evaluation_samples": 1000,
+        "n_evaluation_samples": 30,
         "FID": {
             "feature": 64
-        },
-        "IS": {
-            "feature": 64,
-            "splits": 10
-        },
-        "KID": {
-            "feature": 64,
-            "subset_size": 10
         },
         "LPIPS": {
             "net_type": "vgg",
@@ -90,16 +84,16 @@
     "tracker": {
         "overwrite_data_path": true,
 
-        "log": {
+	"log": {
             "log_type": "console"
-        },
+	},
 
         "load": {
             "load_from": "url",
-		    "file_path": "https://huggingface.co/nousr/dalle2-pytorch/blob/main/decoder/latest.pth"
+            "url": "https://huggingface.co/nousr/dalle2-pytorch/resolve/main/decoder/latest.pth"
         },
 
-        "save": [{
+       "save": [{
             "save_to": "local",
             "save_latest_to": "latest.pth"
         }]
