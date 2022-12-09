@@ -104,6 +104,10 @@
     "tracker": {
         "overwrite_data_path": true,
 
+        "log": {
+            "log_type": "console"
+	    },
+        
         "load": {
             "load_from": "url",
             "url": "https://huggingface.co/Veldrovive/upsamplers/blob/main/working/latest.pth"
