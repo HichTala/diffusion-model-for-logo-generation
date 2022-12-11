@@ -20,7 +20,7 @@ Creating logos for both commercial and artistic purposes is a complex task, hist
 
 We then can easily notice some usual patterns in logo design (shape, color, text...) related to the activity the logo is supposed to stand for. 
 
-As we are aware of how competitive new Diffusion Models are, we wonder if it was possible to use them for this purpose. 
+As we are aware of how competitive new **Diffusion Models** are, we wondered if it was possible to use them for this purpose. 
 
 This could help :
 
@@ -29,6 +29,16 @@ This could help :
 * Be **accessible** (no design competences required)
 
 ## Diffusion models
+
+Diffusion models are text-to-image Machine Learning models. 
+
+We collected and tried few of them (locally) in order to get more confident with the way they work. It enabled us to get used to their associated open-source projects. 
+
+Their uses require some resources such as important GPU VRAM. Some of them can be ran on CPU but with lower performances and bigger runtime.
+
+This is some of the results we get :
+
+
 
 ## Theory : finetuning DALL-E 2
 
