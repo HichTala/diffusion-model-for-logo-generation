@@ -2,7 +2,7 @@
 <p style="text-align:center; font-size:15px">Y.Benjelloun, A.Bruez, N.Chek, H.Talaoubrid</p>
 
 <br>
-<img src="img/logos.png" style="display:block; max-width:500px; margin-left:auto; margin-right:auto" alt="comparison between models for logo generation"></img>
+<img src="img/logos.png" style="display:block; max-width:500px; margin-left:auto; margin-right:auto" title="comparison between models for logo generation"></img>
 <br>
 
 ## Table of contents
@@ -48,10 +48,10 @@ It takes **45 minutes** to run on CPU and **10 seconds** on the GPU we used. **2
 
 | Text         | Image |
 |--------------|:-----:|
-| A bald guy skiing in a green plain |  <img src="img/A_bald_guy_skiing_in_a_green_plain.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto" alt="A bald guy skiing in a green plain"></img> |
-| A fireman saving a child from a burning castle |  <img src="img/A_fireman_saving_a_child_from_a_burning_castle.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto" alt="A fireman saving a child from a burning castle"></img> |
-| A judo champion tanning on a beach |  <img src="img/A_judo_champion_tanning_on_a_beach.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto" alt="A judo champion tanning on a beach"></img> |
-| A little smurf riding a dog |  <img src="img/A_little_smurf_riding_a_dog.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto" alt="A little smurf riding a dog"></img> |
+| A bald guy skiing in a green plain |  <img src="img/A_bald_guy_skiing_in_a_green_plain.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto" title="A bald guy skiing in a green plain"></img> |
+| A fireman saving a child from a burning castle |  <img src="img/A_fireman_saving_a_child_from_a_burning_castle.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto" title="A fireman saving a child from a burning castle"></img> |
+| A judo champion tanning on a beach |  <img src="img/A_judo_champion_tanning_on_a_beach.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto" title="A judo champion tanning on a beach"></img> |
+| A little smurf riding a dog |  <img src="img/A_little_smurf_riding_a_dog.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto" title="A little smurf riding a dog"></img> |
 
 <br>
 
@@ -63,11 +63,12 @@ The model developers used 3 datasets for the model:
 * [Conceptual 12M](https://arxiv.org/abs/2102.08981), which contains 12 million image and caption pairs.
 * The [OpenAI subset](https://github.com/openai/CLIP/blob/main/data/yfcc100m.md) of [YFCC100M](https://multimediacommons.wordpress.com/yfcc100m-core-dataset/), which contains about 15 million images and that we further sub-sampled to 2 million images due to limitations in storage space. They used both title and description as caption and removed html tags, new lines and extra spaces.
 
+It took several minutes to get the output.
 
 | Text         | Image |
 |--------------|:-----:|
-| Beautiful sunset on a lake |  <img src="img/dalle-mini-output-0.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto" alt="Beautiful sunset on a lake"></img> |
-| The Eiffel tower on the night |  <img src="img/dalle-mini-output-1.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto" alt="The Eiffel tower on the night"></img> |
+| Beautiful sunset on a lake |  <img src="img/dalle-mini-output-0.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto" title="Beautiful sunset on a lake"></img> |
+| The Eiffel tower on the night |  <img src="img/dalle-mini-output-1.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto" title="The Eiffel tower on the night"></img> |
 
 <br>
 
@@ -75,11 +76,27 @@ The model developers used 3 datasets for the model:
 
 This is not the official [OpenAI DALL-E 2](https://openai.com/dall-e-2/) version but a replica one trained on [LAION dataset](https://laion.ai/blog/laion-5b/).
 
+It took several minutes to get the output.
+
 | Text         | Image |
 |--------------|:-----:|
-| Beautiful corgi playing soccer |  <img src="img/beautiful_corgi_playing_soccer.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto" alt="Beautiful corgi playing soccer"></img> |
+| Beautiful corgi playing soccer |  <img src="img/beautiful_corgi_playing_soccer.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto" title="Beautiful corgi playing soccer"></img> |
 
 ## Theory : finetuning DALL-E 2
+
+
+As we can see down here, the output for `"A soccer club logo"` is quite good.
+
+<img src="img/dalle2-soccer-logo.png" title="soccer club logos generated bu DALLE-2 OpenAI">
+
+The output is indeed quite good but doesn't provide logos that can be immediately used for official purposes. We still have several issues mainly linked to text generation on logos.  
+
+We then want to improve the model in order to better perform on logo generation. 
+
+We decided to pay attention to [DALL-E 2 replica](https://github.com/LAION-AI/dalle2-laion) for our logo generation task.
+
+<img src="img/dalle2-diagram.png" title="Ramesh, A., Dhariwal, P., Nichol, A., Chu, C., & Chen, M. (2022). Hierarchical text-conditional image generation with clip latents. arXiv preprint arXiv:2204.06125.
+">
 
 ## Collecting data
 
