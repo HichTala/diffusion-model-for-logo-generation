@@ -34,11 +34,37 @@ Diffusion models are text-to-image Machine Learning models.
 
 We collected and tried few of them (locally) in order to get more confident with the way they work. It enabled us to get used to their associated open-source projects. 
 
-Their uses require some resources such as important GPU VRAM. Some of them can be ran on CPU but with lower performances and bigger runtime.
+Their uses require some resources such as important GPU VRAM. Some of them can be ran on CPU but with lower performances and longer runtime.
 
 This is some of the results we get :
 
+* **Stable diffusion [using CompVis project](https://github.com/CompVis/stable-diffusion)** : 
 
+| Text         | Image |
+|--------------|:-----:|
+| A bald guy skiing in a green plain |  <img src="img/A_bald_guy_skiing_in_a_green_plain.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto"></img> |
+| A fireman saving a child from a burning castle |  <img src="img/A_fireman_saving_a_child_from_a_burning_castle.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto"></img> |
+| A judo champion tanning on a beach |  <img src="img/A_judo_champion_tanning_on_a_beach.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto"></img> |
+| A little smurf riding a dog |  <img src="img/A_little_smurf_riding_a_dog.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto"></img> |
+
+<br>
+
+* **DALLE Mini [using this project](https://github.com/borisdayma/dalle-mini)** : 
+
+| Text         | Image |
+|--------------|:-----:|
+| Beautiful sunset on a lake |  <img src="img/dalle-mini-output-0.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto"></img> |
+| The Eiffel tower on the night |  <img src="img/dalle-mini-output-1.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto"></img> |
+
+<br>
+
+* **DALLE-2 [using this project](https://github.com/LAION-AI/dalle2-laion)** : 
+
+*This is not the official [OpenAI DALL-E 2](https://openai.com/dall-e-2/) version but a replica one trained on [LAION dataset](https://laion.ai/blog/laion-5b/).*
+
+| Text         | Image |
+|--------------|:-----:|
+| Beautiful corgi playing soccer |  <img src="img/beautiful_corgi_playing_soccer.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto"></img> |
 
 ## Theory : finetuning DALL-E 2
 
