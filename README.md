@@ -10,7 +10,7 @@
 - [Diffusion models](#diffusion-models)
 - [Theory : finetuning DALL-E 2](#theory--finetuning-dall-e-2)
 - [Collecting data](#collecting-data)
-- [Training CLIP](#training-clip)
+- [Submodels finetuning](#sub-models-finetuning)
 - [Results](#results)
 - [Introspection](#introspection)
 
@@ -34,7 +34,7 @@ Diffusion models are **text-to-image Machine Learning models**.
 
 **We collected and tried few of them (locally)** in order to get more confident with the way they work. It enabled us to get used to their associated open-source projects. 
 
-Their uses require some resources such as important GPU VRAM. Some of them can be ran on CPU but with lower performances and longer runtime.
+**Their uses require some resources such as important GPU VRAM**. Some of them can be ran on CPU but with lower performances and longer runtime.
 
 The following elements illustrate what we have tested by ourselves.
 
@@ -89,7 +89,7 @@ As we can see down here, the output for `"A soccer club logo"` is quite good.
 
 <img src="img/dalle2-soccer-logo.png" title="soccer club logos generated bu DALLE-2 OpenAI">
 
-The output is indeed quite good but doesn't provide logos that can be immediately used for official purposes. We still have several issues mainly linked to text generation on logos.  
+The output is indeed relevant but doesn't provide logos that can be immediately used for official purposes. We still have several issues mainly linked to text generation on logos.  
 
 We then want to improve the model in order to better perform on logo generation. 
 
@@ -108,7 +108,7 @@ The idea in this project is then to finetune these sub-models in order to improv
 
 ## Collecting data
 
-We first need to collect data. More particularily, we need couples of logo and associated caption. In this project, we focused on sport club logos. 
+We first need to collect data. More particularily, **we need couples of logo and associated caption**. In this project, we focused on **sport club logos**. 
 
 * **sportslogohistory.com**
 
@@ -116,9 +116,9 @@ Finding this kind of dataset was not that easy. We luckily found a great website
 
 <img src="img/sportslogohistorylogos.png" title="Preview of sportslogohistory.com">
 
-Luckily again, about 500 logos are available on the website. They are displayed in cards, above their description. 
+Luckily again, about **500 logos** are available on the website. They are displayed in cards, above their description. 
 
-As there is no API for this website, we developed an *ad-hoc* webscraping script using Python and BeautifulSoup4. [The associated code](https://gitlab.mines-ales.fr/AntoineBrz/diffusion-model-for-logo-generation/-/tree/%23f-dataset-generator/) is available on another branch. 
+As there is no API for this website, **we developed an *ad-hoc* webscraping script** using Python and BeautifulSoup4. [The associated code](https://gitlab.mines-ales.fr/AntoineBrz/diffusion-model-for-logo-generation/-/tree/%23f-dataset-generator/) is available on another branch (#f-dataset-generator).  
 
 <img src="img/scraping.png" height="250" style="display:block; margin-left:auto; margin-right:auto" title="Web-scraping diagram">
 
@@ -135,9 +135,44 @@ For instance we had :
 * `A Football ball.`
 
 
-## Training CLIP
+## Sub-models finetuning
+
+As we said [previously](#theory--finetuning-dall-e-2), finetuning DALL-E 2 **implies finetuning its sub-models** (CLIP, Decoder, Prior). 
+
+**Our first strategy** could be summed-up like this :
+
+<img src="img/finetuning_strategy.png" title="Finetuning strategy">
+
+<br>
+
+* **Finetuning CLIP**
+
+CLIP models (many of them exist) are quite large models (minimum 5 GB) trained on large datasets (such as LAION). Training them from scratch is extremely demanding as it requires large data and big computing resources.
+
+Thanks to dedicated open-source projects, **training this model was made possible**. 
+
+We used **[open_clip project by mlfoundations](https://github.com/mlfoundations/open_clip)**. It enabled us **to run training scripts** quite easily (with many adaptations by the way).
+
+It took our dataset as input (a `.tar` file containing logos (`.png`) and caption (`.txt`)).
 
 
+```python
+python -m training.main \
+    --save-frequency 1 \
+    --zeroshot-frequency 1 \
+    --report-to tensorboard \ # Logs metrics on tensorboard (GUI accessible on open port)
+    --train-data="clip_dataset.csv"  \ # CSV file with logo and caption filepaths - training
+    --val-data="clip_dataset_val.csv" \ # CSV file with logo and caption filepaths - validation 
+    --csv-img-key filepath \ # CSV column name for logo filepath
+    --csv-caption-key title \ # CSV column name for caption filepath
+    --warmup 10 \
+    --batch-size=128 \
+    --lr=1e-3 \ # Learning rate
+    --wd=0.1 \
+    --epochs=30 \ # Number of epochs
+    --workers=0 \ # Number of workers
+    --model RN50 \ # Model selection - here RN50
+```
 
 ## Results
 
