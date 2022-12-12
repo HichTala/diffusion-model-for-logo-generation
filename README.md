@@ -120,7 +120,7 @@ Lucily again, about 500 logos are available on the website. They are displayed i
 
 As there is no API for this website, we developed an *ad-hoc* webscraping algorithm using Python and BeautifulSoup4. [The associated code](https://gitlab.mines-ales.fr/AntoineBrz/diffusion-model-for-logo-generation/-/tree/%23f-dataset-generator/) is available on another branch. 
 
-<img src="img/scraping.png" style="height:150px">
+<img src="img/scraping.png" height="150px">
 
 ## Training CLIP
 
