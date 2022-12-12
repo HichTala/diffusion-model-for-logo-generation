@@ -98,7 +98,29 @@ We decided to pay attention to [DALL-E 2 replica](https://github.com/LAION-AI/da
 <img src="img/dalle2-diagram.png" title="Ramesh, A., Dhariwal, P., Nichol, A., Chu, C., & Chen, M. (2022). Hierarchical text-conditional image generation with clip latents. arXiv preprint arXiv:2204.06125.
 ">
 
+Without giving more details about how DALLE-2 works (you will find very precise stuff on [research papers](https://arxiv.org/pdf/2204.06125)), the architecture is made of **3 different models**.
+
+* **CLIP** : 
+* **Prior** :
+* **Decoder** : 
+
+The idea in this project is then to finetune these sub-models in order to improve the main one.
+
 ## Collecting data
+
+We first need to collect data. More particularily, we need couples of logo and associated caption. In this project, we focused on sport club logos. 
+
+* **sportslogohistory.com**
+
+Finding this kind of dataset was not that easy. We luckily found a great website with sport team logos that were described by humans. These logos are free to use. 
+
+<img src="img/sportslogohistorylogos.png" title="Preview of sportslogohistory.com">
+
+Lucily again, about 500 logos are available on the website. They are displayed in cards, above their description. 
+
+As there is no API for this website, we developed an *ad-hoc* webscraping algorithm using Python and BeautifulSoup4. [The associated code](https://gitlab.mines-ales.fr/AntoineBrz/diffusion-model-for-logo-generation/-/tree/%23f-dataset-generator/) is available on another branch. 
+
+<img src="img/scraping.png" style="height:150px">
 
 ## Training CLIP
 
