@@ -48,10 +48,10 @@ It takes **45 minutes** to run on CPU and **10 seconds** on the GPU we used. **2
 
 | Text         | Image |
 |--------------|:-----:|
-| A bald guy skiing in a green plain |  <img src="img/A_bald_guy_skiing_in_a_green_plain.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto" title="A bald guy skiing in a green plain"></img> |
-| A fireman saving a child from a burning castle |  <img src="img/A_fireman_saving_a_child_from_a_burning_castle.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto" title="A fireman saving a child from a burning castle"></img> |
-| A judo champion tanning on a beach |  <img src="img/A_judo_champion_tanning_on_a_beach.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto" title="A judo champion tanning on a beach"></img> |
-| A little smurf riding a dog |  <img src="img/A_little_smurf_riding_a_dog.png" style="display:block; max-width:150px; margin-left:auto; margin-right:auto" title="A little smurf riding a dog"></img> |
+| A bald guy skiing in a green plain |  <img src="img/A_bald_guy_skiing_in_a_green_plain.png" width="200px" style="display:block; margin-left:auto; margin-right:auto" title="A bald guy skiing in a green plain"></img> |
+| A fireman saving a child from a burning castle |  <img src="img/A_fireman_saving_a_child_from_a_burning_castle.png" width="200px" style="display:block; margin-left:auto; margin-right:auto" title="A fireman saving a child from a burning castle"></img> |
+| A judo champion tanning on a beach |  <img src="img/A_judo_champion_tanning_on_a_beach.png" width="200px" style="display:block; margin-left:auto; margin-right:auto" title="A judo champion tanning on a beach"></img> |
+| A little smurf riding a dog |  <img src="img/A_little_smurf_riding_a_dog.png" width="200px" style="display:block; margin-left:auto; margin-right:auto" title="A little smurf riding a dog"></img> |
 
 <br>
 
@@ -120,7 +120,7 @@ Lucily again, about 500 logos are available on the website. They are displayed i
 
 As there is no API for this website, we developed an *ad-hoc* webscraping algorithm using Python and BeautifulSoup4. [The associated code](https://gitlab.mines-ales.fr/AntoineBrz/diffusion-model-for-logo-generation/-/tree/%23f-dataset-generator/) is available on another branch. 
 
-<img src="img/scraping.png" height="150px">
+<img src="img/scraping.png" height="250" style="display:block; margin-left:auto; margin-right:auto" title="Web-scraping diagram">
 
 ## Training CLIP
 
