@@ -181,6 +181,35 @@ python -m training.main \
     --model RN50 \ # Model selection - here RN50
 ```
 
+Running the following program will output some metrics that can saved an plot. Most important, our learning curve.
+
+
+<img src="img/loss_curve.png" title="Learning curve for CLIP RN50 finetuning">
+
+*You can find the [output file](https://gitlab.mines-ales.fr/AntoineBrz/diffusion-model-for-logo-generation/-/blob/%23f-model-training/out.log) on our related repository*
+
+What we have seen here is the process to train CLIP from scratch. 
+
+If we had time enough to dig deeper, we would have finetuned this model using some options provided below.
+
+```python
+python -m training.main \
+    --train-data="/path/to/train_data.csv" \
+    --val-data="/path/to/validation_data.csv"  \
+    --resume /path/to/checkpoints/epoch_K.pt
+```
+
+* **Finetuning Decoder**
+
+We spent many time (days) working on this subject. As usual, we used a great open source project called **[DALLE-2-pytorch](https://github.com/lucidrains/DALLE2-pytorch)**.
+
+Providing your own config file, you can finetune DALL-E 2 decoder using your own CLIP (required to train the Decoder). As an example, we provide [our config file](https://gitlab.mines-ales.fr/AntoineBrz/diffusion-model-for-logo-generation/-/blob/%23f-model-training/train_decoder_config.json). It uses [a decoder from HuggingFace repository](https://huggingface.co/nousr/dalle2-pytorch).
+
+Unfortunately, we ran out of time and we still suffer from bugs and issues. Still motivated, we won't give up and try again.
+
 ## Results
 
+We can then export the trained models as regular `.pth` file and use it in DALL-E 2 architecture, using the **[DALL-E-2-pytorch project](https://github.com/lucidrains/DALLE2-pytorch)**. You can edit given [config files](https://github.com/lucidrains/DALLE2-pytorch/tree/main/configs) (can be tricky) and **use your own CLIP and decoder** instead of official ones. 
+
+In a theoretical world were all this 
 ## Introspection
