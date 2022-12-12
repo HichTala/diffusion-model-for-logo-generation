@@ -1,7 +1,12 @@
 <h1 style="text-align:center">Logo Generation with Diffusion Models</h1>
 <p style="text-align:center; font-size:15px">Y.Benjelloun, A.Bruez, N.Chek, H.Talaoubrid</p>
-<a src="https://gitlab.mines-ales.fr/AntoineBrz/diffusion-model-for-logo-generation"><p style="text-align:center; font-size:15px" >https://gitlab.mines-ales.fr/AntoineBrz/diffusion-model-for-logo-generation</p><a>
+<a src="https://gitlab.mines-ales.fr/AntoineBrz/diffusion-model-for-logo-generation"><p style="text-align:center; font-size:15px" >https://gitlab.mines-ales.fr/AntoineBrz/diffusion-model-for-logo-generation</p></a>
 
+
+| :zap:        Ignore at your own risk!   |
+|-----------------------------------------|
+
+Many associated resources are located on our Gitlab repository !
 
 <br>
 
@@ -224,13 +229,18 @@ Ask human to tell what is the more relevant logo among regular DM generation and
 
 <br>
 
-<img src="img/clip_assessment.png" title="clip assessment">
+<img src="img/clip_assessment.png" title="clip assessment" width="400px">
 
 Use CLIP (not our) to evaluate the likelihood between our generation and the input text.
 
 ## Introspection
 
 
-In a nutshell we know that :
+In a nutshell we think that :
 
-[x] 
+- [x] We have not enough augment our dataset
+- [x] We suffered from an obvious lack of time due to a over-ambitious objectives targetting
+- [x] We learnt a lot of things on SOTA subjects
+- [x] We get more confident with Pytorch
+- [x] We get more confident with using GPU resources on remote (cloud) computing
+- [x] We are disapointed not to be able to show you more functional things.
