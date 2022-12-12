@@ -1,7 +1,10 @@
 <h1 style="text-align:center">Logo Generation with Diffusion Models</h1>
 <p style="text-align:center; font-size:15px">Y.Benjelloun, A.Bruez, N.Chek, H.Talaoubrid</p>
+<a src="https://gitlab.mines-ales.fr/AntoineBrz/diffusion-model-for-logo-generation"><p style="text-align:center; font-size:15px" >https://gitlab.mines-ales.fr/AntoineBrz/diffusion-model-for-logo-generation</p><a>
+
 
 <br>
+
 <img src="img/logos.png" style="display:block; max-width:500px; margin-left:auto; margin-right:auto" title="comparison between models for logo generation"></img>
 <br>
 
@@ -204,5 +207,22 @@ Unfortunately, we ran out of time and we still suffer from bugs and issues. Stil
 
 We can then export the trained models as regular `.pth` file and use it in DALL-E 2 architecture, using the **[DALL-E-2-pytorch project](https://github.com/lucidrains/DALLE2-pytorch)**. You can edit given [config files](https://github.com/lucidrains/DALLE2-pytorch/tree/main/configs) (can be tricky) and **use your own CLIP and decoder** instead of official ones. 
 
-In a theoretical world were all this 
+In a theoretical world where all of this would work, we would need to evaluate our accuracy / performance on generating logos. 
+
+* We would have **two options** to do so :
+
+<img src="img/human_assessment.png" title="Human assessment">
+
+Ask human to tell what is the more relevant logo among regular DM generation and our finetuned DM. We could then get statistics.
+
+<br>
+
+<img src="img/clip_assessment.png" title="clip assessment">
+
+Use CLIP (not our) to evaluate the likelihood between our generation and the input text.
+
 ## Introspection
+
+In a nutshell we know that :
+
+[x] 
