@@ -116,13 +116,28 @@ Finding this kind of dataset was not that easy. We luckily found a great website
 
 <img src="img/sportslogohistorylogos.png" title="Preview of sportslogohistory.com">
 
-Lucily again, about 500 logos are available on the website. They are displayed in cards, above their description. 
+Luckily again, about 500 logos are available on the website. They are displayed in cards, above their description. 
 
-As there is no API for this website, we developed an *ad-hoc* webscraping algorithm using Python and BeautifulSoup4. [The associated code](https://gitlab.mines-ales.fr/AntoineBrz/diffusion-model-for-logo-generation/-/tree/%23f-dataset-generator/) is available on another branch. 
+As there is no API for this website, we developed an *ad-hoc* webscraping script using Python and BeautifulSoup4. [The associated code](https://gitlab.mines-ales.fr/AntoineBrz/diffusion-model-for-logo-generation/-/tree/%23f-dataset-generator/) is available on another branch. 
 
 <img src="img/scraping.png" height="250" style="display:block; margin-left:auto; margin-right:auto" title="Web-scraping diagram">
 
+* **Data augmentation with GPT-2**
+
+We tried to use [GPT-2](https://huggingface.co/nlpconnect/vit-gpt2-image-captioning) image-to-text model by OpenAI in order to **automatically caption other logos** found on the Internet. **We collected and used this model** locally, and made it run on our GPU setup.   
+
+Unfortunately, **outputs were not specific enough**.
+
+For instance we had : 
+
+* `A blue lion drawing.`
+* `A circle-shaped diagram.`
+* `A Football ball.`
+
+
 ## Training CLIP
+
+
 
 ## Results
 
